@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h3>Posts list</h3>
+    <div>
+        {% for post in posts if posts %}
+            {% set createAt = post.createAt|date('d.m.Y') %}
+            <li>
+                <span>{{ createAt == currentDate|date('d.m.Y') ? 'Today' : createAt }}</span>
+                <span><a href="{{ path('detail_post', {'id': post.id}) }}">{{ post.title }}</a></span>
+                <span><a href="{{ path('detail_post', {'id': post.id}) }}">{{ post.comments|length }}</a></span>
+            </li>
+            <li>{{ post.body|length > 10 ? post.body|slice(0, 10) ~ '...' : post.body }}</li>
+            <li>{{ post.author.username }}</li>
+        {% else %}
+            <li>No posts</li>
+        {% endfor %}
+    </div>
+    <hr>
+    <div>
+        <a href="{{ path('create_post') }}">create new post</a>
+    </div>
+{% endblock %}

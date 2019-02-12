@@ -1,0 +1,11 @@
+parameters:
+  mailer_from_address: 'test@test.com'
+  mailer_from_name: 'test user'
+
+fos_user:
+  db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+  firewall_name: main
+  user_class: App\Entity\User
+  from_email:
+    address: "%mailer_from_address%"
+    sender_name: "%mailer_from_name%"

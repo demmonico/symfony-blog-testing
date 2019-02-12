@@ -1,0 +1,8 @@
+.DS_Store
+.idea
+.idea/*
+
+infra/local/.env.local
+
+infra/local/mysql/data/*
+!infra/local/mysql/data/.gitkeep

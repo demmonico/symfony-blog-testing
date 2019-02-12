@@ -1,0 +1,31 @@
+FROM php:7.2-fpm
+LABEL maintainer="demmonico@gmail.com"
+LABEL service="app"
+LABEL env="dev"
+
+COPY infra/common/php/php.ini /usr/local/etc/php/
+COPY infra/common/php/php-fpm.conf /usr/local/etc/
+COPY infra/common/php/www.conf /usr/local/etc/php-fpm.d/
+
+COPY infra/common/php/run.sh /root/
+
+RUN apt-get -y update \
+    && apt-get -my install zip \
+        git \
+        mysql-client \
+        # for Symfony web-skeleton
+        libzip-dev \
+    # reduce disk space
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# for Symfony web-skeleton
+RUN pecl install zip && docker-php-ext-enable zip
+RUN docker-php-ext-install pdo_mysql
+
+# [DEV ONLY]
+RUN pecl install xdebug-2.6.0 && docker-php-ext-enable xdebug
+COPY infra/local/php/xdebug.conf /usr/local/etc/php-fpm.d/
+COPY infra/local/php/my-xdebug.ini /usr/local/etc/php/conf.d/
+
+CMD ["/root/run.sh", "php-fpm"]

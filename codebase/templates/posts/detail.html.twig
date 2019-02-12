@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h3>Post details</h3>
+    <hr>
+    <div>
+        <li>
+            {% set createAt = post.createAt|date('d.m.Y') %}
+            <span>{{ createAt == currentDate|date('d.m.Y') ? 'Today' : createAt }}</span>
+            <span>{{ post.title }}</span>
+        </li>
+        <li>{{ post.body }}</li>
+        <li>{{ post.author.username }}</li>
+    </div>
+    <hr>
+    <div>
+        {% for index,comment in comments if comments %}
+            <li>
+                <div>{{ index + 1 }}</div>
+                <div><b>{{ comment.author }}</b>{{ comment.url ? (' (' ~ comment.url ~ ') ') : '' }} said ({{ comment.createAt|date('d.m.Y H:m') }})</div>
+                <div>{{ comment.body }}</div>
+            </li>
+        {% else %}
+            <li>No comments</li>
+        {% endfor %}
+        {{ form(form) }}
+    </div>
+{% endblock %}
