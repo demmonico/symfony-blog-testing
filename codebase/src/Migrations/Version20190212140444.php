@@ -14,7 +14,7 @@ final class Version20190212140444 extends AbstractMigration
 {
     public function getDescription() : string
     {
-        return '';
+        return 'Create Comment table';
     }
 
     public function up(Schema $schema) : void
@@ -22,7 +22,23 @@ final class Version20190212140444 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('CREATE TABLE comment (id INT AUTO_INCREMENT NOT NULL, post_id INT NOT NULL, author VARCHAR(255) NOT NULL, body LONGTEXT NOT NULL, url VARCHAR(255) DEFAULT NULL, email VARCHAR(255) DEFAULT NULL, ip INT DEFAULT NULL, create_at DATETIME NOT NULL, INDEX IDX_9474526C4B89032C (post_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql(<<<SQL
+CREATE TABLE comment (
+    id INT AUTO_INCREMENT NOT NULL,
+    post_id INT NOT NULL,
+    author VARCHAR(255) NOT NULL,
+    body LONGTEXT NOT NULL,
+    url VARCHAR(255) DEFAULT NULL,
+    email VARCHAR(255) DEFAULT NULL,
+    ip INT DEFAULT NULL,
+    create_at DATETIME NOT NULL,
+    
+    INDEX IDX_9474526C4B89032C (post_id),
+    PRIMARY KEY(id)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB
+SQL
+);
+
         $this->addSql('ALTER TABLE comment ADD CONSTRAINT FK_9474526C4B89032C FOREIGN KEY (post_id) REFERENCES post (id)');
     }
 

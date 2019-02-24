@@ -1,0 +1,8 @@
+#DataSourceSettings#
+        #LocalDataSource: symfblog
+        #BEGIN#
+<data-source source="LOCAL" name="symfblog" uuid="e0562850-37fb-4d5a-b106-94b30f773b82"><database-info product="MySQL" version="8.0.15" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e )" dbms="MYSQL" exact-version="8.0.15" exact-driver-version="5.1"><extra-name-characters>#@</extra-name-characters><identifier-quote-string>`</identifier-quote-string></database-info><case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/><driver-ref>mysql</driver-ref><synchronize>true</synchronize><jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver><jdbc-url>jdbc:mysql://localhost:33060/app_dev</jdbc-url><secret-storage>master_key</secret-storage><user-name>root</user-name><introspection-schemas>*:@</introspection-schemas><driver-properties><property name="autoReconnect" value="true"/><property name="zeroDateTimeBehavior" value="convertToNull"/><property name="tinyInt1isBit" value="false"/><property name="characterEncoding" value="utf8"/><property name="characterSetResults" value="utf8"/><property name="yearIsDateType" value="false"/></driver-properties></data-source>
+        #END#
+
+
+

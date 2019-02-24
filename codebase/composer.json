@@ -76,6 +76,7 @@
         "post-update-cmd": [
             "@auto-scripts"
         ],
+
         "phpcs": ["./vendor/bin/phpcs --standard=./phpcs.xml -p ./src/"],
         "phpstan": ["./vendor/bin/phpstan analyse -l 6 src"],
         "test-phpunit": ["./bin/phpunit -d zend.enable_gc=1"],
